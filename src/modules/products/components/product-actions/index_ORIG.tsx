@@ -11,8 +11,6 @@ import { useParams } from "next/navigation"
 import { useEffect, useMemo, useRef, useState } from "react"
 import ProductPrice from "../product-price"
 import MobileActions from "./mobile-actions"
-import { ShoppingCartIcon } from "@heroicons/react/20/solid"
-import { ArrowPathIcon } from "@heroicons/react/24/outline"
 
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
@@ -36,7 +34,6 @@ export default function ProductActions({
   const [options, setOptions] = useState<Record<string, string | undefined>>({})
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
-  const [amount, setAmount] = useState(1)
 
   // If there is only 1 variant, preselect the options
   useEffect(() => {
@@ -109,7 +106,7 @@ export default function ProductActions({
 
     await addToCart({
       variantId: selectedVariant.id,
-      quantity: amount,
+      quantity: 1,
       countryCode,
     })
 
@@ -118,16 +115,8 @@ export default function ProductActions({
 
   return (
     <>
-    <div className="flex flex-col justify-start">
-
-    <ProductPrice product={product} variant={selectedVariant} />
-    <div className="w-full text-start pb-4">
-          <span className="inline-block px-2 py-0.5 text-xs font-medium text-white bg-green-600 rounded-full">
-            Op voorraad
-          </span>
-        </div>
-      <div className="flex flex-row gap-x-2 justify-start items-center" ref={actionsRef}>
-        {/* <div>
+      <div className="flex flex-col gap-y-2" ref={actionsRef}>
+        <div>
           {(product.variants?.length ?? 0) > 1 && (
             <div className="flex flex-col gap-y-4">
               {(product.options || []).map((option) => {
@@ -147,31 +136,11 @@ export default function ProductActions({
               <Divider />
             </div>
           )}
-        </div> */}
-
-        
-
-        <div className="flex flex-row gap-x-2 items-center border border-gray-200 rounded-md p-1">
-          <button
-            // variant="secondary"
-            className="w-6 h-6 bg-gray-100 shadow-none"
-            onClick={() => setAmount((prev) => Math.max(prev - 1, 1))}
-            disabled={!!disabled || isAdding}
-          >
-            -
-          </button>
-          <span className="text-lg-semi text-center w-6">{amount}</span>
-          <button
-            // variant="secondary"
-            className="w-6 h-6 bg-gray-100 shadow-none"
-            onClick={() => setAmount((prev) => prev + 1)}
-            disabled={!!disabled || isAdding}
-          >
-            +
-          </button>
         </div>
 
-        <button
+        <ProductPrice product={product} variant={selectedVariant} />
+
+        <Button
           onClick={handleAddToCart}
           disabled={
             !inStock ||
@@ -180,19 +149,17 @@ export default function ProductActions({
             isAdding ||
             !isValidVariant
           }
-          // variant="primary"
-          className="px-2 bg-orange-500 text-white rounded-md text-center shadow-none"
-          // isLoading={isAdding}
+          variant="primary"
+          className="w-full h-10"
+          isLoading={isAdding}
           data-testid="add-product-button"
         >
-          {isAdding ? (
-            <ArrowPathIcon className="h-4 w-4 text-white w-full text-center animate-spin" />
-          ) : (!isAdding && !selectedVariant && !options
-            ? "Selecteer variant"
+          {!selectedVariant && !options
+            ? "Select variant"
             : !inStock || !isValidVariant
-            ? "Niet op voorraad"
-            : <div className="flex gap-2 items-center"><ShoppingCartIcon className="w-4 h-4 w-full text-center" /><span>Bestellen</span> </div>)}
-        </button>
+            ? "Out of stock"
+            : "Add to cart"}
+        </Button>
         <MobileActions
           product={product}
           variant={selectedVariant}
@@ -205,7 +172,6 @@ export default function ProductActions({
           optionsDisabled={!!disabled || isAdding}
         />
       </div>
-    </div>
     </>
   )
 }
