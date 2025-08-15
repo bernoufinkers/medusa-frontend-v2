@@ -7,11 +7,9 @@ import RefinementList from "@modules/store/components/refinement-list/index"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products/index"
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-// import AccordionMenu from "@modules/store/components/categories"
-import { listCategories } from '@lib/data/categories';
 import { HttpTypes } from "@medusajs/types"
 
-export default async function CategoryTemplate({
+export default function CategoryTemplate({
   category,
   sortBy,
   page,
@@ -25,49 +23,28 @@ export default async function CategoryTemplate({
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
 
-  // const categories = await listCategories({ limit: 100 });
-
   if (!category || !countryCode) notFound()
 
-  // const parents = [] as HttpTypes.StoreProductCategory[]
+  const parents = [] as HttpTypes.StoreProductCategory[]
 
-  // let children = GetFullChildrenOfCategory(category.id, categories)
-  //   children.forEach(c => {
-  //   c.parent_category_id = ""
-  // })
+  const getParents = (category: HttpTypes.StoreProductCategory) => {
+    if (category.parent_category) {
+      parents.push(category.parent_category)
+      getParents(category.parent_category)
+    }
+  }
 
-  // const getParents = (category: HttpTypes.StoreProductCategory) => {
-  //   if (category.parent_category) {
-  //     parents.push(category.parent_category)
-  //     getParents(category.parent_category)
-  //   }
-  // }
-
-  // getParents(category)
-  
-  // console.log("children", children)
+  getParents(category)
 
   return (
     <div
       className="flex flex-col small:flex-row small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <details className="border rounded p-2 md:hidden">
-        <summary className="cursor-pointer text-lg font-semibold text-gray-500">
-          Filteren en sorteren
-        </summary>
-        <div className="mt-2">
-          <RefinementList sortBy={sort}/>
-          {/* <AccordionMenu categories={categories} countryCode={countryCode} categoryPage={false} /> */}
-        </div>
-      </details>
-      <div className="flex-col pr-4 hidden md:flex">
-        <RefinementList sortBy={sort} />
-        {/* <AccordionMenu categories={categories} countryCode={countryCode} categoryPage={false} /> */}
-      </div>
+      <RefinementList sortBy={sort} data-testid="sort-by-container" />
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
-          {/* {parents &&
+          {parents &&
             parents.map((parent) => (
               <span key={parent.id} className="text-ui-fg-subtle">
                 <LocalizedClientLink
@@ -79,15 +56,15 @@ export default async function CategoryTemplate({
                 </LocalizedClientLink>
                 /
               </span>
-            ))} */}
-          <h1 data-testid="category-page-title text-primary">{category.name}</h1>
+            ))}
+          <h1 data-testid="category-page-title">{category.name}</h1>
         </div>
         {category.description && (
           <div className="mb-8 text-base-regular">
             <p>{category.description}</p>
           </div>
         )}
-        {/* {category.category_children && (
+        {category.category_children && (
           <div className="mb-8 text-base-large">
             <ul className="grid grid-cols-1 gap-2">
               {category.category_children?.map((c) => (
@@ -99,7 +76,7 @@ export default async function CategoryTemplate({
               ))}
             </ul>
           </div>
-        )} */}
+        )}
         <Suspense
           fallback={
             <SkeletonProductGrid
@@ -117,20 +94,4 @@ export default async function CategoryTemplate({
       </div>
     </div>
   )
-}
-
-const GetFullChildrenOfCategory = (parentId: string, categories: HttpTypes.StoreProductCategory[]): HttpTypes.StoreProductCategory[]  => {
-  let children = categories.filter(c => c.parent_category_id === parentId)
-  // First remove parent_category_id from children
-
-  for (let i = 0; i < children.length; i++) {
-    children[i].category_children = GetFullChildrenOfCategory(children[i].id, categories)
-  }
-
-  return children.map(c => {
-    return {
-      ...c,
-      category_children: GetFullChildrenOfCategory(c.id, categories)
-    }
-  })
 }

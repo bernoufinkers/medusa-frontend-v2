@@ -7,16 +7,18 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import { getAuthHeaders, getCacheOptions } from "./cookies"
 import { getRegion, retrieveRegion } from "./regions"
 
-export const listProducts = async ({
+export const searchProducts = async ({
   pageParam = 1,
   queryParams,
   countryCode,
   regionId,
+  searchString,
 }: {
   pageParam?: number
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams
   countryCode?: string
   regionId?: string
+  searchString?: string
 }): Promise<{
   response: { products: HttpTypes.StoreProduct[]; count: number }
   nextPage: number | null
@@ -53,9 +55,14 @@ export const listProducts = async ({
     ...(await getCacheOptions("products")),
   }
 
+  const searchParams = new URLSearchParams({
+    q: searchString || "",
+  })
+
+
   return sdk.client
     .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
-      `/store/products`,
+      `/store/products?${searchParams.toString()}`,
       {
         method: "GET",
         query: {
@@ -108,7 +115,7 @@ export const listProductsWithSort = async ({
 
   const {
     response: { products, count },
-  } = await listProducts({
+  } = await searchProducts({
     pageParam: 0,
     queryParams: {
       ...queryParams,

@@ -2,42 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.bg-primary {
-  background-color: #34495E;
-}
-
-.bg-secondary {
-  background-color: #f39c12;
-}
-
-.text-primary {
-  color: #34495E;
-}
-
-.text-secondary {
-  color: #f39c12;
-}
-
-.text-link {
-  color: #3ab7e7;
-}
-
-.border-primary {
-  border-color: #34495E;
-}
-
-.border-secondary {
-  border-color: #f39c12;
-}
-
-.prose ol,
-.prose ul {
-  list-style: initial;
-  padding-left: 1.25rem; /* = pl-5 */
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

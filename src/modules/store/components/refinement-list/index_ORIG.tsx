@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback } from "react"
 
-import SortProducts, { SortOptions } from "./sort-products/index"
+import SortProducts, { SortOptions } from "./sort-products/index_ORIG"
 
 type RefinementListProps = {
   sortBy: SortOptions
