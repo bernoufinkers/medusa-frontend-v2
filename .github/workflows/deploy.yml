@@ -1,0 +1,28 @@
+name: Medusa Frontend Next.js App V2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known_hosts
+        run: ssh-keyscan 167.235.55.201 >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        run: rsync -avz --delete ./ medusa@167.235.55.201:/home/medusa/app
+
+      - name: Run post-deploy script
+        run: ssh medusa@167.235.55.201 'bash ~/deploy-frontend.sh'
