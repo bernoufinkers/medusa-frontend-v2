@@ -120,7 +120,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
           ref={thumbsRef}
           role="listbox"
           aria-label="Thumbnails"
-          onWheel={onWheel} // NEW
+          onWheel={(e) => {onWheel(e)}}
           className="w-full overflow-x-auto scroll-smooth
                      flex flex-nowrap gap-4 pr-2 pl-2
                      scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"

@@ -5,12 +5,18 @@ import NativeSelect, {
 } from "@modules/common/components/native-select"
 import { HttpTypes } from "@medusajs/types"
 
+const countryTranslations: Record<string, string> = {
+  "Belgium": "België",
+  "Netherlands": "Nederland",
+  "Germany": "Duitsland"
+}
+
 const CountrySelect = forwardRef<
   HTMLSelectElement,
   NativeSelectProps & {
     region?: HttpTypes.StoreRegion
   }
->(({ placeholder = "Country", region, defaultValue, ...props }, ref) => {
+>(({ placeholder = "Land", region, defaultValue, ...props }, ref) => {
   const innerRef = useRef<HTMLSelectElement>(null)
 
   useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(
@@ -25,7 +31,9 @@ const CountrySelect = forwardRef<
 
     return region.countries?.map((country) => ({
       value: country.iso_2,
-      label: country.display_name,
+      label: country.display_name
+        ? countryTranslations[country.display_name] || country.display_name
+        : "",
     }))
   }, [region])
 

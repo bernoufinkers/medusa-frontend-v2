@@ -7,8 +7,15 @@ import { useSearch } from '@modules/search/context/search';
 import React from "react";
 
 export default function SearchResults() {
-    const { foundProducts } = useSearch();
+    const { foundProducts, setFoundProducts } = useSearch();
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    React.useEffect(() => {
+        scrollToTop();
+    }, [foundProducts]);
 
     if (!foundProducts || foundProducts.length === 0) {
         return <></>;
