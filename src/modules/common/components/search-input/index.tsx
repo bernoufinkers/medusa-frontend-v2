@@ -24,6 +24,7 @@ const SearchInput = () => {
 
   
   React.useEffect(() => {
+    console.log("Setting up event listener for search input")
     searchInput.current?.addEventListener("input", () => {handleSearch(1000)})
 
     return () => {

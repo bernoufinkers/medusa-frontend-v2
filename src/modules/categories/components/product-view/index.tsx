@@ -33,7 +33,6 @@ export default async function ProductPreview({
 
   return (
     <>
-
       <div className="max-w-xs rounded overflow-hidden hover:shadow-lg">
         <LocalizedClientLink href={`/products/${product.handle}`}>
           <img className="w-full h-[200px] object-contain p-4"
@@ -57,9 +56,6 @@ export default async function ProductPreview({
             <hr className="border-gray-200 py-2" />
             {/* <h5 className="w-full text-end">{cheapestPrice && <PreviewPrice price={cheapestPrice} />}</h5> */}
             <ProductActions product={product} region={region} disabled={isFeatured} />
-            {/* <LocalizedClientLink href={`/products/${product.handle}`} className="group bg-orange-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
-              Bekijk artikel
-            </LocalizedClientLink> */}
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import Footer from "@modules/layout/templates/footer"
 import Nav from "@modules/layout/templates/nav2"
 import FreeShippingPriceNudge from "@modules/shipping/components/free-shipping-price-nudge"
 import SearchResults from "@modules/layout/components/search-results"
+import RouteChangeReset from "@modules/common/components/route-change-reset"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -39,7 +40,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
           shippingOptions={shippingOptions}
         />
       )}
-
+      <RouteChangeReset />
       <SearchResults />
       {props.children}
       <Footer />

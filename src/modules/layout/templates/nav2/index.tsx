@@ -23,13 +23,13 @@ export default async function Nav() {
           
 
           <div className="flex me-6 items-center h-full">
-            <LocalizedClientLink
+            <a
               href="/"
               className="txt-compact-xlarge-plus hover:text-orange-300 uppercase text-white"
               data-testid="nav-store-link"
             >
               <img src="https://almec.com/media/85/01/d0/1745396137/Almec-logo-wit-transparant.png" alt="Almec Logo" className="h-6 w-auto" />
-            </LocalizedClientLink>
+            </a>
           </div>
 
           <div className="flex flex-1 items-center h-full hidden md:flex">

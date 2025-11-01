@@ -20,8 +20,14 @@ export const MegaMenu = ({ categories }: Props) => {
     const getDisplayName = (cat: HttpTypes.StoreProductCategory): string =>
         typeof cat.metadata?.webshop_name === "string"
             ? cat.metadata.webshop_name
+            : cat.description !== "" ? cat.description : cat.name
+
+    const getSortName = (cat: HttpTypes.StoreProductCategory): string =>
+        typeof cat.metadata?.webshop_name === "string"
+            ? cat.metadata.webshop_name
             : cat.name
 
+    
     const topLevel = categories
         .filter(
             (cat) =>
@@ -29,7 +35,7 @@ export const MegaMenu = ({ categories }: Props) => {
                 isVisible(cat) &&
                 categories.some((c) => c.parent_category_id === cat.id && isVisible(c))
         )
-        .sort((a, b) => getDisplayName(a).localeCompare(getDisplayName(b)))
+        .sort((a, b) => getSortName(a).localeCompare(getSortName(b)))
 
     const level2Blocks = categories.filter(
         (c) =>

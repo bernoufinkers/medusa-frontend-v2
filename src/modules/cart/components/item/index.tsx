@@ -13,6 +13,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import Spinner from "@modules/common/icons/spinner"
 import Thumbnail from "@modules/products/components/thumbnail"
 import { useState } from "react"
+import { convertToLocale } from "@lib/util/money"
 
 type ItemProps = {
   item: HttpTypes.StoreCartLineItem
@@ -44,6 +45,13 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
   const maxQtyFromInventory = 10
   const maxQuantity = item.variant?.manage_inventory ? 10 : maxQtyFromInventory
 
+  let adjustmentsCodeIsPromo = item.adjustments?.find(adj => adj.code === 'NTH_PROMO_Y_50_EVERY_2')
+  let discountAmount;
+  if (adjustmentsCodeIsPromo) {
+    discountAmount = convertToLocale({ amount: adjustmentsCodeIsPromo.amount, currency_code: currencyCode, locale: 'nl-NL' })
+    console.log(discountAmount)
+  }
+
   return (
     <Table.Row className="w-full" data-testid="product-row">
       <Table.Cell className="!pl-0 p-4 w-24">
@@ -70,6 +78,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           {item.product_title}
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
+        <div className="text-orange-500">{adjustmentsCodeIsPromo ? `2e voor de helft: ${discountAmount} korting` : null}</div>
       </Table.Cell>
 
       {type === "full" && (

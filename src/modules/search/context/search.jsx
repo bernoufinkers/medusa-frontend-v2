@@ -53,7 +53,7 @@ export function SearchProvider({ children }) {
   }
 
   return (
-    <SearchContext.Provider value={{ foundProducts, search, lang }}>
+    <SearchContext.Provider value={{ foundProducts, search, lang, setFoundProducts }}>
       {children}
     </SearchContext.Provider>
   )
