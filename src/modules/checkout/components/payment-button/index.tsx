@@ -140,6 +140,7 @@ const StripePaymentButton = ({
         size="large"
         isLoading={submitting}
         data-testid={dataTestId}
+        className="bg-secondary shadow-none"
       >
         Plaats bestelling
       </Button>
@@ -179,6 +180,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         onClick={handlePayment}
         size="large"
         data-testid="submit-order-button"
+        className="bg-secondary shadow-none"
       >
         Plaats bestelling
       </Button>

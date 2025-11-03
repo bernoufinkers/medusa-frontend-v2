@@ -9,6 +9,7 @@ import MegaMenuWrapper from "@modules/layout/components/mega-menu/wrapper"
 import SearchInput from "@modules/common/components/search-input"
 import USPsHeader from "@modules/layout/components/usp-header"
 import LinksHeader from "@modules/layout/components/links-header"
+import DynamicLogoWrapper from "@modules/common/components/dynamic-logo/wrapper"
 import { CheckCircleIcon, UserCircleIcon, StarIcon } from "@heroicons/react/20/solid"
 
 export default async function Nav() {
@@ -28,7 +29,15 @@ export default async function Nav() {
               className="txt-compact-xlarge-plus hover:text-orange-300 uppercase text-white"
               data-testid="nav-store-link"
             >
-              <img src="https://almec.com/media/85/01/d0/1745396137/Almec-logo-wit-transparant.png" alt="Almec Logo" className="h-6 w-auto" />
+              <Suspense fallback={
+                <img 
+                  src="https://codeonline.nl/wp-content/uploads/2024/04/CodeOnline_Logo_V2.webp" 
+                  alt="Loading..." 
+                  className="h-6 w-auto" 
+                />
+              }>
+                <DynamicLogoWrapper />
+              </Suspense>
             </a>
           </div>
 

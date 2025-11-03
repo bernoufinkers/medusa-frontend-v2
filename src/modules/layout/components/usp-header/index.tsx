@@ -3,26 +3,23 @@
 import React from "react";
 import { CheckCircleIcon, StarIcon } from "@heroicons/react/20/solid"
 
-import { useTranslation } from "../../../../translations/provider"
-import LanguageSelector from "../language-selector"
-
 const USPsHeader = () => {
   // const { translations, changeLanguage } = useTranslation();
   const usps = [
     {
       id: 1,
       text: <>Binnen 24 uur geleverd</>,
-      icon: <CheckCircleIcon className="h-5 w-5 me-3 text-orange-500" />,
+      icon: <CheckCircleIcon className="h-5 w-5 me-3 text-secondary" />,
     },
     {
       id: 2,
       text: <>Scherpe prijzen, beste service</>,
-      icon: <CheckCircleIcon className="h-5 w-5 me-3 text-orange-500" />,
+      icon: <CheckCircleIcon className="h-5 w-5 me-3 text-secondary" />,
     },
     {
       id: 3,
       text: <>Slimme keuzes met onze huismerk artikelen</>,
-      icon: <CheckCircleIcon className="h-5 w-5 me-3 text-orange-500" />,
+      icon: <CheckCircleIcon className="h-5 w-5 me-3 text-secondary" />,
     },
     {
       id: 4,
@@ -35,7 +32,7 @@ const USPsHeader = () => {
           ))}
         </>
       ),
-      icon: <CheckCircleIcon className="h-5 w-5 me-3 text-orange-500" />,
+      icon: <CheckCircleIcon className="h-5 w-5 me-3 text-secondary" />,
     },
   ];
 

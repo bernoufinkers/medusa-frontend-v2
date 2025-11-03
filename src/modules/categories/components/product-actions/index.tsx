@@ -173,7 +173,7 @@ export default function ProductActions({
             !isValidVariant
           }
           // variant="primary"
-          className="w-6 h-6 bg-orange-500 text-white rounded-lg text-center shadow-none"
+          className="w-6 h-6 bg-secondary text-white rounded-lg text-center shadow-none"
           // isLoading={isAdding}
           data-testid="add-product-button"
         >

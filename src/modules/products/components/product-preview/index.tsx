@@ -44,7 +44,7 @@ export default async function ProductPreview({
                                     </p>
                                 </div>
                                 <div className="px-3 py-4">
-                                    <LocalizedClientLink href={`/products/${product.handle}`} className="group bg-orange-500 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                                    <LocalizedClientLink href={`/products/${product.handle}`} className="group bg-secondary hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
                                         Bekijk artikel
                                     </LocalizedClientLink>
                                 </div>

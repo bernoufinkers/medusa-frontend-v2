@@ -78,7 +78,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
           {item.product_title}
         </Text>
         <LineItemOptions variant={item.variant} data-testid="product-variant" />
-        <div className="text-orange-500">{adjustmentsCodeIsPromo ? `2e voor de helft: ${discountAmount} korting` : null}</div>
+        <div className="text-secondary">{adjustmentsCodeIsPromo ? `2e voor de helft: ${discountAmount} korting` : null}</div>
       </Table.Cell>
 
       {type === "full" && (

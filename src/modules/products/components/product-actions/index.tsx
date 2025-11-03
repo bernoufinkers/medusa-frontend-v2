@@ -193,7 +193,7 @@ export default function ProductActions({
             !isValidVariant
           }
           // variant="primary"
-          className="px-2 bg-orange-500 text-white rounded-md text-center shadow-none"
+          className="px-2 bg-secondary text-white rounded-md text-center shadow-none"
           // isLoading={isAdding}
           data-testid="add-product-button"
         >

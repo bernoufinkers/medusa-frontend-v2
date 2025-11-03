@@ -21,6 +21,8 @@ module.exports = {
         padding: "padding-top padding-right padding-bottom padding-left",
       },
       colors: {
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
         grey: {
           0: "#FFFFFF",
           5: "#F9FAFB",

@@ -2,20 +2,22 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Theme colors will be injected dynamically from environment variables */
+
 .bg-primary {
-  background-color: #34495E;
+  background-color: var(--color-primary, #34495E);
 }
 
 .bg-secondary {
-  background-color: #f39c12;
+  background-color: var(--color-secondary, #f39c12);
 }
 
 .text-primary {
-  color: #34495E;
+  color: var(--color-primary, #34495E);
 }
 
 .text-secondary {
-  color: #f39c12;
+  color: var(--color-secondary, #f39c12);
 }
 
 .text-link {
@@ -23,11 +25,11 @@
 }
 
 .border-primary {
-  border-color: #34495E;
+  border-color: var(--color-primary, #34495E);
 }
 
 .border-secondary {
-  border-color: #f39c12;
+  border-color: var(--color-secondary, #f39c12);
 }
 
 .prose ol,
