@@ -37,18 +37,6 @@ export default async function Home(props: {
   const apiContent = await getHomepageContent()
   const homepageContent: HomepageContent = apiContent || (homepageContentFallback as HomepageContent)
 
-  if (apiContent) {
-    console.log("🏠 Using homepage content from API")
-    console.log("🏠 API Content structure:", {
-      hasHero: !!apiContent.hero,
-      hasQuickMenu: !!apiContent.quickMenu,
-      hasCategoryCards: !!apiContent.categoryCards,
-      keys: Object.keys(apiContent)
-    })
-  } else {
-    console.log("🏠 Using fallback homepage content from local JSON file")
-  }
-
   // Safety check - ensure we have valid content
   if (!homepageContent || !homepageContent.hero) {
     console.error("❌ Invalid homepage content structure!")

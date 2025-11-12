@@ -169,8 +169,7 @@ export async function getHomepageContent() {
     }
 
     const next = {
-      ...(await getCacheOptions("homepage")),
-      revalidate: 300, // Cache for 5 minutes
+      revalidate: 60, // Cache for 1 minute for faster updates
     }
 
     console.log("🏠 Fetching homepage content from API...")
@@ -181,7 +180,7 @@ export async function getHomepageContent() {
         method: "GET",
         headers,
         next,
-        cache: "force-cache",
+        cache: "no-store", // Disable aggressive caching in production
       }
     )
 
