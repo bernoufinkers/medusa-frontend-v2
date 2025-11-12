@@ -1,0 +1,487 @@
+{
+  "hero": {
+    "layout": {
+      "type": "asymmetric",
+      "leftColumnSpan": 2,
+      "rightColumnSpan": 1
+    },
+    "blocks": [
+      {
+        "id": "main_block",
+        "position": "left",
+        "size": "large",
+        "colors": {
+          "gradient": {
+            "from": "orange-500",
+            "via": "orange-600", 
+            "to": "orange-700"
+          },
+          "border": "orange-200",
+          "textPrimary": "white",
+          "textSecondary": "white/95",
+          "badge": {
+            "background": "white/90",
+            "text": "orange-700",
+            "accent": "orange-500"
+          },
+          "button": {
+            "background": "white",
+            "text": "orange-700",
+            "hover": "orange-50"
+          }
+        },
+        "content": {
+          "badge": {
+            "text": "Tijdelijk 15% korting",
+            "hasAccent": true,
+            "animate": true
+          },
+          "title": "Slim schakelen begint met Kopp",
+          "description": "Profiteer nu van 15% korting op het complete Kopp assortiment. Hoogwaardige schakelmateriaal voor elke toepassing.",
+          "button": {
+            "text": "Bekijk actie →",
+            "href": "/collections/schakelmateriaal"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/wysiwyg/EMAT-Kasten-V2-5_kopie.png",
+          "alt": "Kopp product showcase",
+          "position": "right",
+          "size": "large"
+        }
+      },
+      {
+        "id": "spotlight_block",
+        "position": "right_top",
+        "size": "medium",
+        "colors": {
+          "gradient": {
+            "from": "indigo-500",
+            "via": "indigo-600",
+            "to": "indigo-700"
+          },
+          "border": "indigo-200",
+          "textPrimary": "white",
+          "textSecondary": "white/95",
+          "badge": {
+            "background": "white/90",
+            "text": "indigo-700",
+            "accent": "indigo-500"
+          },
+          "button": {
+            "background": "white",
+            "text": "indigo-700", 
+            "hover": "indigo-50"
+          }
+        },
+        "content": {
+          "badge": {
+            "text": "Nieuw",
+            "hasAccent": true
+          },
+          "title": "Kopp HK07 Pure",
+          "description": "Hoogwaardige schakelmateriaal voor moderne installaties",
+          "button": {
+            "text": "Meer info →",
+            "href": "/products/kopp-hk07"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/wysiwyg/hero-image-2.png",
+          "alt": "Kopp HK07 Pure",
+          "position": "left",
+          "size": "medium"
+        }
+      },
+      {
+        "id": "configurator_block",
+        "position": "right_bottom",
+        "size": "medium",
+        "colors": {
+          "gradient": {
+            "from": "green-500",
+            "via": "green-600",
+            "to": "green-700"
+          },
+          "border": "green-200",
+          "textPrimary": "white",
+          "textSecondary": "white/95",
+          "badge": {
+            "background": "white/90",
+            "text": "green-700",
+            "accent": "green-500"
+          },
+          "button": {
+            "background": "white",
+            "text": "green-700",
+            "hover": "green-50"
+          }
+        },
+        "content": {
+          "badge": {
+            "text": "Zelf samenstellen",
+            "hasAccent": true
+          },
+          "title": "Groepenkast Configurator",
+          "description": "Stel je eigen groepenkast samen met onze handige tool",
+          "button": {
+            "text": "Start direct →",
+            "href": "/configurator"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/wysiwyg/hero-image-3.png",
+          "alt": "Groepenkast Configurator",
+          "position": "left",
+          "size": "medium"
+        }
+      }
+    ]
+  },
+  "quickMenu": {
+    "layout": {
+      "columns": 3,
+      "blockLayout": "two_column"
+    },
+    "blocks": [
+      {
+        "id": "groepenkasten_menu",
+        "colors": {
+          "header": {
+            "gradient": {
+              "from": "blue-600",
+              "to": "blue-700"
+            },
+            "text": "white"
+          },
+          "links": {
+            "text": "gray-700",
+            "hover": "blue-600",
+            "hoverBackground": "blue-50",
+            "icon": "gray-400",
+            "iconHover": "blue-600"
+          },
+          "imageOverlay": "blue-600/10"
+        },
+        "content": {
+          "icon": "BoltIcon",
+          "title": "Groepenkasten",
+          "image": {
+            "src": "https://www.elektramat.nl/media/wysiwyg/EMAT-Kasten-V2-5_kopie.png",
+            "alt": "Groepenkasten"
+          },
+          "links": [
+            {
+              "text": "Alle groepenkasten",
+              "href": "/collections/groepenkasten"
+            },
+            {
+              "text": "EMAT groepenkasten", 
+              "href": "/collections/emat-groepenkasten"
+            },
+            {
+              "text": "Hager groepenkasten",
+              "href": "/collections/hager-groepenkasten"
+            },
+            {
+              "text": "ABB groepenkasten",
+              "href": "/collections/abb-groepenkasten"
+            }
+          ]
+        }
+      },
+      {
+        "id": "schakelmateriaal_menu",
+        "colors": {
+          "header": {
+            "gradient": {
+              "from": "green-600",
+              "to": "green-700"
+            },
+            "text": "white"
+          },
+          "links": {
+            "text": "gray-700",
+            "hover": "green-600",
+            "hoverBackground": "green-50",
+            "icon": "gray-400",
+            "iconHover": "green-600"
+          },
+          "imageOverlay": "green-600/10"
+        },
+        "content": {
+          "icon": "CubeIcon",
+          "title": "Schakelmateriaal",
+          "image": {
+            "src": "https://www.elektramat.nl/media/wysiwyg/menu/eaton-component-home.png",
+            "alt": "Schakelmateriaal"
+          },
+          "links": [
+            {
+              "text": "Alle schakelmateriaal",
+              "href": "/collections/schakelmateriaal"
+            },
+            {
+              "text": "Kopp schakelmateriaal",
+              "href": "/collections/kopp-schakelmateriaal"
+            },
+            {
+              "text": "Hager schakelmateriaal",
+              "href": "/collections/hager-schakelmateriaal"
+            },
+            {
+              "text": "EMAT schakelmateriaal",
+              "href": "/collections/emat-schakelmateriaal"
+            }
+          ]
+        }
+      },
+      {
+        "id": "kabel_draad_menu",
+        "colors": {
+          "header": {
+            "gradient": {
+              "from": "orange-600",
+              "to": "orange-700"
+            },
+            "text": "white"
+          },
+          "links": {
+            "text": "gray-700",
+            "hover": "orange-600",
+            "hoverBackground": "orange-50",
+            "icon": "gray-400",
+            "iconHover": "orange-600"
+          },
+          "imageOverlay": "orange-600/10"
+        },
+        "content": {
+          "icon": "WrenchScrewdriverIcon",
+          "title": "Kabel & Draad",
+          "image": {
+            "src": "https://www.elektramat.nl/media/wysiwyg/menu/grondkabel.png",
+            "alt": "Draad en kabel"
+          },
+          "links": [
+            {
+              "text": "Alle kabels en draden",
+              "href": "/collections/draad-en-kabel"
+            },
+            {
+              "text": "YMvK kabel",
+              "href": "/collections/ymvk-kabel"
+            },
+            {
+              "text": "VD draad",
+              "href": "/collections/vd-draad"
+            },
+            {
+              "text": "Installatiemateriaal",
+              "href": "/collections/installatiemateriaal"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "categoryCards": {
+    "header": {
+      "title": "Ontdek onze productcategorieën",
+      "description": "Van groepenkasten tot domotica - alles voor uw elektrische installatie"
+    },
+    "layout": {
+      "grid": {
+        "mobile": 1,
+        "tablet": 2,
+        "desktop": 3
+      }
+    },
+    "categories": [
+      {
+        "id": "groepenkasten_card",
+        "content": {
+          "title": "Groepenkasten",
+          "description": "Complete groepenkasten en verdelers voor elke toepassing",
+          "button": {
+            "text": "Bekijk producten →",
+            "href": "/categories/groepenkasten"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/cache/140x_/80/media/wysiwyg/Schakelmateriaal_1610398911.png",
+          "alt": "Groepenkasten"
+        },
+        "colors": {
+          "gradient": {
+            "from": "blue-500",
+            "via": "blue-600",
+            "to": "blue-700"
+          },
+          "border": "blue-200",
+          "button": {
+            "background": "white",
+            "text": "blue-700",
+            "hover": "blue-50"
+          }
+        }
+      },
+      {
+        "id": "schakelmateriaal_card",
+        "content": {
+          "title": "Schakelmateriaal",
+          "description": "Schakelaars, stopcontacten en dimers van topkwaliteit",
+          "button": {
+            "text": "Bekijk producten →",
+            "href": "/categories/schakelmateriaal"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/cache/140x_/80/media/wysiwyg/Insjallamateriaal_1610398911.png",
+          "alt": "Schakelmateriaal"
+        },
+        "colors": {
+          "gradient": {
+            "from": "orange-500",
+            "via": "orange-600",
+            "to": "orange-700"
+          },
+          "border": "orange-200",
+          "button": {
+            "background": "white",
+            "text": "orange-700",
+            "hover": "orange-50"
+          }
+        }
+      },
+      {
+        "id": "kabel_draad_card",
+        "content": {
+          "title": "Kabel & Draad",
+          "description": "Installatie- en energiekabels voor alle toepassingen",
+          "button": {
+            "text": "Bekijk producten →",
+            "href": "/categories/kabel-draad"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/cache/140x_/80/media/wysiwyg/Buis_1610398911.png",
+          "alt": "Kabel & Draad"
+        },
+        "colors": {
+          "gradient": {
+            "from": "green-500",
+            "via": "green-600",
+            "to": "green-700"
+          },
+          "border": "green-200",
+          "button": {
+            "background": "white",
+            "text": "green-700",
+            "hover": "green-50"
+          }
+        }
+      },
+      {
+        "id": "verlichting_card",
+        "content": {
+          "title": "Verlichting",
+          "description": "LED verlichting en lichtbronnen voor binnen en buiten",
+          "button": {
+            "text": "Bekijk producten →",
+            "href": "/categories/verlichting"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/cache/140x_/80/media/wysiwyg/Verlichting_1610398911.png",
+          "alt": "Verlichting"
+        },
+        "colors": {
+          "gradient": {
+            "from": "purple-500",
+            "via": "purple-600",
+            "to": "purple-700"
+          },
+          "border": "purple-200",
+          "button": {
+            "background": "white",
+            "text": "purple-700",
+            "hover": "purple-50"
+          }
+        }
+      },
+      {
+        "id": "installatiemateriaal_card",
+        "content": {
+          "title": "Installatiemateriaal",
+          "description": "Leidingbuizen, fittingen en bevestigingsmateriaal",
+          "button": {
+            "text": "Bekijk producten →",
+            "href": "/categories/installatiemateriaal"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/cache/140x_/80/media/wysiwyg/Bevestiging_1610398911.png",
+          "alt": "Installatiemateriaal"
+        },
+        "colors": {
+          "gradient": {
+            "from": "teal-500",
+            "via": "teal-600",
+            "to": "teal-700"
+          },
+          "border": "teal-200",
+          "button": {
+            "background": "white",
+            "text": "teal-700",
+            "hover": "teal-50"
+          }
+        }
+      },
+      {
+        "id": "domotica_card",
+        "content": {
+          "title": "Domotica",
+          "description": "Slimme installaties en huisautomatisering",
+          "button": {
+            "text": "Bekijk producten →",
+            "href": "/categories/domotica"
+          }
+        },
+        "image": {
+          "src": "https://www.elektramat.nl/media/cache/140x_/80/media/laadpaal2_1610392535.png",
+          "alt": "Domotica"
+        },
+        "colors": {
+          "gradient": {
+            "from": "indigo-500",
+            "via": "indigo-600",
+            "to": "indigo-700"
+          },
+          "border": "indigo-200",
+          "button": {
+            "background": "white",
+            "text": "indigo-700",
+            "hover": "indigo-50"
+          }
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "version": "1.0",
+    "lastUpdated": "2025-11-03",
+    "description": "Homepage content configuration for Hero, QuickMenu and CategoryCards components",
+    "colorScheme": {
+      "primary": ["orange", "blue", "green"],
+      "secondary": ["purple", "teal", "indigo"],
+      "supportedColors": [
+        "orange-500", "orange-600", "orange-700", "orange-200", "orange-50",
+        "blue-500", "blue-600", "blue-700", "blue-200", "blue-50",
+        "green-500", "green-600", "green-700", "green-200", "green-50",
+        "purple-500", "purple-600", "purple-700", "purple-200", "purple-50",
+        "teal-500", "teal-600", "teal-700", "teal-200", "teal-50",
+        "indigo-500", "indigo-600", "indigo-700", "indigo-200", "indigo-50"
+      ]
+    }
+  }
+}

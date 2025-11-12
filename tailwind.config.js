@@ -10,6 +10,45 @@ module.exports = {
     "./src/modules/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@medusajs/ui/dist/**/*.{js,jsx,ts,tsx}",
   ],
+  safelist: [
+    // Gradient classes
+    'from-orange-500', 'via-orange-600', 'to-orange-700',
+    'from-blue-500', 'via-blue-600', 'to-blue-700',
+    'from-green-500', 'via-green-600', 'to-green-700',
+    'from-purple-500', 'via-purple-600', 'to-purple-700',
+    'from-teal-500', 'via-teal-600', 'to-teal-700',
+    'from-indigo-500', 'via-indigo-600', 'to-indigo-700',
+    // Border classes
+    'border-orange-200', 'border-blue-200', 'border-green-200',
+    'border-purple-200', 'border-teal-200', 'border-indigo-200',
+    // Text classes
+    'text-white', 'text-white/95', 'text-white/90',
+    'text-orange-700', 'text-blue-700', 'text-green-700',
+    'text-purple-700', 'text-teal-700', 'text-indigo-700',
+    'text-gray-700', 'text-gray-400',
+    // Background classes
+    'bg-white', 'bg-white/90', 'bg-white/10',
+    'bg-orange-50', 'bg-blue-50', 'bg-green-50',
+    'bg-purple-50', 'bg-teal-50', 'bg-indigo-50',
+    'bg-orange-500', 'bg-blue-500', 'bg-green-500',
+    'bg-purple-500', 'bg-teal-500', 'bg-indigo-500',
+    // Hover background classes
+    'hover:bg-orange-50', 'hover:bg-blue-50', 'hover:bg-green-50',
+    'hover:bg-purple-50', 'hover:bg-teal-50', 'hover:bg-indigo-50',
+    // Hover text classes
+    'hover:text-orange-600', 'hover:text-blue-600', 'hover:text-green-600',
+    'hover:text-purple-600', 'hover:text-teal-600', 'hover:text-indigo-600',
+    // Gradient from-to classes
+    'from-orange-600', 'to-orange-700',
+    'from-blue-600', 'to-blue-700',
+    'from-green-600', 'to-green-700',
+    'from-purple-600', 'to-purple-700',
+    'from-teal-600', 'to-teal-700',
+    'from-indigo-600', 'to-indigo-700',
+    // Overlay classes
+    'from-orange-600/10', 'from-blue-600/10', 'from-green-600/10',
+    'from-purple-600/10', 'from-teal-600/10', 'from-indigo-600/10',
+  ],
   theme: {
     extend: {
       transitionProperty: {
