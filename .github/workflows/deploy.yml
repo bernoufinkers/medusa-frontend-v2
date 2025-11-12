@@ -21,8 +21,11 @@ jobs:
       - name: Add server to known_hosts
         run: ssh-keyscan 167.235.55.201 >> ~/.ssh/known_hosts
 
-      - name: Deploy via rsync
+      - name: Deploy to /home/medusa/app
         run: rsync -avz --delete ./ medusa@167.235.55.201:/home/medusa/app
 
-      - name: Run post-deploy script
+      - name: Deploy to /home/medusa/plentyparts-store
+        run: rsync -avz --delete ./ medusa@167.235.55.201:/home/medusa/plentyparts-store
+
+      - name: Run post-deploy script for app + plentyparts-store
         run: ssh medusa@167.235.55.201 'bash ~/deploy-frontend.sh'
