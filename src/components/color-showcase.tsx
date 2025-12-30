@@ -1,9 +1,10 @@
 "use client"
 
-import { getThemeColors } from "@lib/util/theme-colors"
-
 export default function ColorShowcase() {
-  const colors = getThemeColors()
+  const colors = {
+    primary: process.env.NEXT_PUBLIC_PRIMARY_COLOR || "#34495E",
+    secondary: process.env.NEXT_PUBLIC_SECONDARY_COLOR || "#f39c12"
+  }
 
   return (
     <div className="p-6 space-y-4">
