@@ -32,19 +32,19 @@
         },
         "content": {
           "badge": {
-            "text": "Tijdelijk 15% korting",
+            "text": "Tot 80,- euro korting!",
             "hasAccent": true,
             "animate": true
           },
-          "title": "Slim schakelen begint met Kopp",
-          "description": "Profiteer nu van 15% korting op het complete Kopp assortiment. Hoogwaardige schakelmateriaal voor elke toepassing.",
+          "title": "Tijdelijke cashback-actie van Nilfisk",
+          "description": "Profiteer nu tot 80,- euro cashback op veel Nilfisk stofzuigers. Bekijk ons assortiment online of in de winkel.",
           "button": {
             "text": "Bekijk actie →",
-            "href": "/collections/schakelmateriaal"
+            "href": "/categories/1--stofzuigen-1-01--stofzuigers-1-01-01--stofzuigers-met-zak"
           }
         },
         "image": {
-          "src": "https://www.elektramat.nl/media/wysiwyg/EMAT-Kasten-V2-5_kopie.png",
+          "src": "https://dev.plentyparts.nl/uploads/logos/Nilfisk-cashback.png",
           "alt": "Kopp product showcase",
           "position": "right",
           "size": "large"

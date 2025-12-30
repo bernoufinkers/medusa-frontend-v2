@@ -11,7 +11,28 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Build application
+        run: npm run build
+        env:
+          MEDUSA_BACKEND_URL: ${{ secrets.MEDUSA_BACKEND_URL }}
+          NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          NEXT_PUBLIC_DEFAULT_REGION: nl
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
@@ -19,13 +40,19 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Add server to known_hosts
-        run: ssh-keyscan 167.235.55.201 >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H 167.235.55.201 >> ~/.ssh/known_hosts
 
-      - name: Deploy to /home/medusa/app
-        run: rsync -avz --delete ./ medusa@167.235.55.201:/home/medusa/app
+      - name: Deploy to server
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.env*' \
+            --exclude='.next/cache' \
+            --exclude='*.log' \
+            --exclude='.DS_Store' \
+            --exclude='README.md' \
+            ./ bernou@167.235.55.201:/home/bernou/apps/medusa-frontend/
 
-      - name: Deploy to /home/medusa/plentyparts-store
-        run: rsync -avz --delete ./ medusa@167.235.55.201:/home/medusa/plentyparts-store
-
-      - name: Run post-deploy script for app + plentyparts-store
-        run: ssh medusa@167.235.55.201 'bash ~/deploy-frontend.sh'
+      - name: Run post-deploy script
+        run: ssh bernou@167.235.55.201 '/home/bernou/deploy-medusa.sh'
