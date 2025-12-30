@@ -42,6 +42,7 @@ jobs:
       - name: Deploy to server
         run: |
           rsync -avz --delete \
+            -e "ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no" \
             --exclude='.git' \
             --exclude='node_modules' \
             --exclude='.env*' \
@@ -52,4 +53,4 @@ jobs:
             ./ bernou@167.235.55.201:/home/bernou/apps/medusa-frontend/
 
       - name: Run post-deploy script
-        run: ssh bernou@167.235.55.201 '/home/bernou/deploy-medusa.sh'
+        run: ssh -o LogLevel=ERROR bernou@167.235.55.201 '/home/bernou/deploy-medusa.sh'
