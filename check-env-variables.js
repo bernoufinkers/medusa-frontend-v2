@@ -1,4 +1,17 @@
-const c = require("ansi-colors")
+let c
+
+try {
+  c = require("ansi-colors")
+} catch {
+  const id = (str) => str
+  const red = Object.assign(id, { bold: id })
+  c = {
+    red,
+    yellow: id,
+    bold: id,
+    dim: id,
+  }
+}
 
 const requiredEnvs = [
   {
