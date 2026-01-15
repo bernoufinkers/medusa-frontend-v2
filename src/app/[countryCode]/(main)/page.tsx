@@ -52,6 +52,19 @@ export default async function Home(props: {
     fields: "id, handle, title",
   })
 
+  if (process.env.DEBUG_HOMEPAGE_COLLECTIONS === "1") {
+    console.log("[homepage] listCollections result", {
+      countryCode,
+      regionId: region?.id,
+      count: collections?.length ?? 0,
+      collections: (collections ?? []).map((c) => ({
+        id: c.id,
+        handle: c.handle,
+        title: c.title,
+      })),
+    })
+  }
+
   if (!collections || !region) {
     return null
   }
@@ -136,6 +149,20 @@ async function AlternativeHomepage({
         } as any),
       }).then(({ response }) => response.products)
     : []
+
+  if (process.env.DEBUG_HOMEPAGE_COLLECTIONS === "1") {
+    console.log("[homepage] Top Deals", {
+      regionId: region.id,
+      topDealsCollection: topDealsCollection
+        ? {
+            id: topDealsCollection.id,
+            handle: topDealsCollection.handle,
+            title: topDealsCollection.title,
+          }
+        : null,
+      topDealsCount: topDeals.length,
+    })
+  }
 
   return (
     <>
