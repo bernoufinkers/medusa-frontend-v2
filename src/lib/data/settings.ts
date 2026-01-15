@@ -174,51 +174,111 @@ export async function getHomepageContent() {
 
     console.log("🏠 Fetching homepage content from API...")
 
-    const response = await sdk.client.fetch<any>(
-      "/store/custom/settings/homepage",
-      {
-        method: "GET",
-        headers,
-        next,
-        cache: "no-store", // Disable aggressive caching in production
-      }
-    )
+    const response = await sdk.client.fetch<any>("/store/custom/settings/homepage", {
+      method: "GET",
+      headers,
+      next,
+      cache: "no-store", // Disable aggressive caching in production
+    })
 
     console.log("🏠 Homepage content API response received")
 
-    if (response && typeof response === 'object') {
-      // Check if response is wrapped in 'homepage' key (most likely)
-      if (response.homepage) {
-        console.log("✅ Homepage content loaded from API (homepage wrapper)")
-        return response.homepage
-      }
-      
-      // Check if response has the expected structure directly
-      if (response.hero && response.quickMenu && response.categoryCards) {
-        console.log("✅ Homepage content loaded from API (direct format)")
-        return response
-      }
-      
-      // Check if response is wrapped in a 'homepage_content' key
-      if (response.homepage_content) {
-        console.log("✅ Homepage content loaded from API (homepage_content wrapper)")
-        return response.homepage_content
-      }
-      
-      // Check for 'content' wrapper key
-      if (response.content) {
-        console.log("✅ Homepage content loaded from API (content wrapper)")
-        return response.content
-      }
+    const extracted = extractHomepageContent(response)
+    if (extracted) {
+      return extracted
+    }
 
-      console.log("⚠️ Homepage content has unexpected structure:", Object.keys(response))
-      return null
+    if (response && typeof response === "object") {
+      console.log(
+        "⚠️ No homepage content found (unexpected structure):",
+        Object.keys(response)
+      )
     }
 
     console.log("⚠️ No homepage content found in API response")
     return null
   } catch (error) {
     console.error("❌ Error fetching homepage content:", error)
+    return null
+  }
+}
+
+function extractHomepageContent(response: any) {
+  if (!response || typeof response !== "object") {
+    return null
+  }
+
+  // Check if response is wrapped in 'homepage' key (most likely)
+  if (response.homepage) {
+    console.log("✅ Homepage content loaded from API (homepage wrapper)")
+    return response.homepage
+  }
+
+  // Check if response has the expected structure directly
+  if (response.hero && response.quickMenu && response.categoryCards) {
+    console.log("✅ Homepage content loaded from API (direct format)")
+    return response
+  }
+
+  // Check if response is wrapped in a 'homepage_content' key
+  if (response.homepage_content) {
+    console.log("✅ Homepage content loaded from API (homepage_content wrapper)")
+    return response.homepage_content
+  }
+
+  // Check for 'content' wrapper key
+  if (response.content) {
+    console.log("✅ Homepage content loaded from API (content wrapper)")
+    return response.content
+  }
+
+  return null
+}
+
+/**
+ * Get homepage preview content from backend API by id
+ * Endpoint: /store/custom/settings/homepage/preview/:id
+ * @returns Homepage content object or null if not available
+ */
+export async function getHomepagePreviewContent(id: string) {
+  try {
+    const headers = {
+      "x-publishable-api-key": process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY!,
+    }
+
+    const next = {
+      revalidate: 0,
+    }
+
+    console.log(`🏠 Fetching homepage preview content from API (id=${id})...`)
+
+    const response = await sdk.client.fetch<any>(
+      `/store/custom/settings/homepage/preview/${id}`,
+      {
+        method: "GET",
+        headers,
+        next,
+        cache: "no-store",
+      }
+    )
+
+    console.log("🏠 Homepage preview content API response received")
+
+    const extracted = extractHomepageContent(response)
+    if (extracted) {
+      return extracted
+    }
+
+    if (response && typeof response === "object") {
+      console.log(
+        "⚠️ No homepage preview content found (unexpected structure):",
+        Object.keys(response)
+      )
+    }
+
+    return null
+  } catch (error) {
+    console.error("❌ Error fetching homepage preview content:", error)
     return null
   }
 }

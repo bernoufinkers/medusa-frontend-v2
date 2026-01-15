@@ -119,6 +119,26 @@ export async function middleware(request: NextRequest) {
   const urlHasCountryCode =
     countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
 
+  // Special-case: keep a stable preview URL without country code.
+  // External URL: /homepage/preview/:id
+  // Internal route: /{countryCode}/homepage/preview/:id
+  if (!urlHasCountryCode && countryCode) {
+    const path = request.nextUrl.pathname
+    if (path.startsWith("/homepage/preview/")) {
+      const rewriteUrl = request.nextUrl.clone()
+      rewriteUrl.pathname = `/${countryCode}${path}`
+
+      const rewriteResponse = NextResponse.rewrite(rewriteUrl)
+      if (!cacheIdCookie) {
+        rewriteResponse.cookies.set("_medusa_cache_id", cacheId, {
+          maxAge: 60 * 60 * 24,
+        })
+      }
+
+      return rewriteResponse
+    }
+  }
+
   // if one of the country codes is in the url and the cache id is set, return next
   if (urlHasCountryCode && cacheIdCookie) {
     return NextResponse.next()
