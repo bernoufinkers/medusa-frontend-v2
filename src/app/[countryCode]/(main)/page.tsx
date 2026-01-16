@@ -227,7 +227,7 @@ async function AlternativeHomepage({
           <div className="flex items-end justify-between gap-6">
             <div>
               <Heading level="h2" className="text-2xl md:text-3xl font-bold">
-                Topdeals voor jou!
+                Een greep uit onze laatste aanbiedingen
               </Heading>
               <Text className="text-sm text-gray-600 mt-1">
                 Populair uit {topDealsCollection?.title || "onze collectie"}
