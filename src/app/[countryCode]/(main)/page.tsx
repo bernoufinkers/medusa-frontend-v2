@@ -41,21 +41,34 @@ export const metadata: Metadata = {
 
 export default async function Home(props: {
   params: Promise<{ countryCode: string }>
+  searchParams?: Promise<{ debug_homepage?: string }>
 }) {
   const params = await props.params
+  const searchParams = await props.searchParams
 
   const { countryCode } = params
 
   const region = await getRegion(countryCode)
 
+  const debugCollections =
+    searchParams?.debug_homepage === "1" ||
+    process.env["DEBUG_HOMEPAGE_COLLECTIONS"] === "1"
+
   const { collections } = await listCollections({
     fields: "id, handle, title",
   })
 
-  if (process.env.DEBUG_HOMEPAGE_COLLECTIONS === "1") {
+  if (debugCollections) {
+    const publishableKey = process.env["NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY"]
+    const publishableKeyMasked = publishableKey
+      ? `${publishableKey.slice(0, 8)}…${publishableKey.slice(-4)}`
+      : null
+
     console.log("[homepage] listCollections result", {
       countryCode,
       regionId: region?.id,
+      backendUrl: process.env["MEDUSA_BACKEND_URL"],
+      publishableKey: publishableKeyMasked,
       count: collections?.length ?? 0,
       collections: (collections ?? []).map((c) => ({
         id: c.id,
@@ -82,6 +95,7 @@ export default async function Home(props: {
         content={homepageContent}
         collections={collections}
         region={region}
+        debug={debugCollections}
       />
     )
   }
@@ -130,10 +144,12 @@ async function AlternativeHomepage({
   content,
   collections,
   region,
+  debug,
 }: {
   content: HomepageContent
   collections: Awaited<ReturnType<typeof listCollections>>["collections"]
   region: HttpTypes.StoreRegion
+  debug?: boolean
 }) {
   const heroBlocks = content.hero?.blocks || []
   const tiles = heroBlocks.slice(0, 3)
@@ -150,7 +166,7 @@ async function AlternativeHomepage({
       }).then(({ response }) => response.products)
     : []
 
-  if (process.env.DEBUG_HOMEPAGE_COLLECTIONS === "1") {
+  if (debug) {
     console.log("[homepage] Top Deals", {
       regionId: region.id,
       topDealsCollection: topDealsCollection
