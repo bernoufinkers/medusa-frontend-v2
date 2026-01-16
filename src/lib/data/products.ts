@@ -12,11 +12,13 @@ export const listProducts = async ({
   queryParams,
   countryCode,
   regionId,
+  cache,
 }: {
   pageParam?: number
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams
   countryCode?: string
   regionId?: string
+  cache?: RequestCache
 }): Promise<{
   response: { products: HttpTypes.StoreProduct[]; count: number }
   nextPage: number | null
@@ -50,7 +52,8 @@ export const listProducts = async ({
     "x-publishable-api-key": process.env["NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY"]!,
   }
 
-  const next = {
+  const cacheMode = cache ?? "force-cache"
+  const next = cacheMode === "no-store" ? {} : {
     ...(await getCacheOptions("products")),
   }
 
@@ -69,7 +72,7 @@ export const listProducts = async ({
         },
         headers,
         next,
-        cache: "force-cache",
+        cache: cacheMode,
       }
     )
     .then(({ products, count }) => {

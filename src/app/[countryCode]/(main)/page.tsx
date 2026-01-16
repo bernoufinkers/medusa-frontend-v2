@@ -158,6 +158,7 @@ async function AlternativeHomepage({
   const topDeals = topDealsCollection
     ? await listProducts({
         regionId: region.id,
+        cache: "no-store",
         queryParams: ({
           limit: 12,
           // Medusa store API supports `collection_id`, but it's not typed in StoreProductParams

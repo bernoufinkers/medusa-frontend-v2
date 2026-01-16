@@ -57,6 +57,8 @@ jobs:
           ssh -o LogLevel=ERROR bernou@167.235.55.201 '
             set -e
             cd /home/bernou/apps/medusa-frontend
+            # Clear Next.js fetch/cache between deploys to avoid stale cached API responses
+            rm -rf .next/cache
             npm ci --omit=dev
             pm2 restart medusa-frontend
           '
