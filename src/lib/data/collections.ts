@@ -2,7 +2,7 @@
 
 import { sdk } from "@lib/config"
 import { HttpTypes } from "@medusajs/types"
-import { getCacheOptions } from "./cookies"
+import { getAuthHeaders, getCacheOptions } from "./cookies"
 
 export const retrieveCollection = async (id: string) => {
   const next = {
@@ -27,6 +27,11 @@ export const listCollections = async (
     ...(await getCacheOptions("collections")),
   }
 
+  const headers = {
+    ...(await getAuthHeaders()),
+    "x-publishable-api-key": process.env["NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY"]!,
+  }
+
   queryParams.limit = queryParams.limit || "100"
   queryParams.offset = queryParams.offset || "0"
 
@@ -35,6 +40,7 @@ export const listCollections = async (
       "/store/collections",
       {
         query: queryParams,
+        headers,
         next,
         cache: "force-cache",
       }

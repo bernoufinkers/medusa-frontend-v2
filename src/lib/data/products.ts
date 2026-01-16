@@ -47,6 +47,7 @@ export const listProducts = async ({
 
   const headers = {
     ...(await getAuthHeaders()),
+    "x-publishable-api-key": process.env["NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY"]!,
   }
 
   const next = {

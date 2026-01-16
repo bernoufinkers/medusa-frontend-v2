@@ -37,7 +37,7 @@ export type ApiThemeResponse = ThemeSettingsResponse | DirectThemeResponse
 export async function retrieveThemeSettings(): Promise<ThemeSettings | null> {
   try {
     const headers = {
-      "x-publishable-api-key": process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY!,
+      "x-publishable-api-key": process.env["NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY"]!,
     }
 
     const next = {
@@ -165,7 +165,7 @@ export async function getCompleteThemeSettings() {
 export async function getHomepageContent() {
   try {
     const headers = {
-      "x-publishable-api-key": process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY!,
+      "x-publishable-api-key": process.env["NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY"]!,
     }
 
     const next = {
@@ -243,7 +243,7 @@ function extractHomepageContent(response: any) {
 export async function getHomepagePreviewContent(id: string) {
   try {
     const headers = {
-      "x-publishable-api-key": process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY!,
+      "x-publishable-api-key": process.env["NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY"]!,
     }
 
     const next = {
